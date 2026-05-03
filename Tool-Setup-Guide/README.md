@@ -1,20 +1,30 @@
-# 🎉 Tool-Setup-Guide — Cài đặt tool Node.js & Python từ A → Z
+# 🎉 Tool-Setup-Guide — Cài đặt môi trường chạy tool Node.js & Python
 
-> **Đừng lo nếu bạn không biết code, cứ làm y hệt từng bước dưới đây là tool sẽ chạy mượt.** ✨
+> **Chỉ cần biết xài chuột là cài được. Không phải dân code cũng làm được trong 5 phút.** ✨
 
-Đây là bộ hướng dẫn dành riêng cho **người chưa từng biết code** muốn cài đặt môi trường để chạy các tool tự động (automation, cào dữ liệu, bot…) viết bằng **Node.js** hoặc **Python** trên máy tính **Ubuntu**.
+Bộ hướng dẫn này dành cho **người chưa từng biết code** muốn chạy các tool tự động (bot request, airdrop, cào dữ liệu, automation…) viết bằng **Node.js** hoặc **Python**.
 
-Mọi thứ đã được mình quay video + chụp ảnh trực tiếp trên máy thật, bạn chỉ cần **bấm Copy → Paste vào Terminal → Enter** là xong. 💪
+Mọi thứ đã được mình mô tả từng cú nhấp chuột, kèm screenshot trang tải chính chủ và placeholder ảnh để chèn thêm khi bạn chạy thực tế trên máy. 💪
 
 ---
 
-## 🗺️ Lộ trình học (chỉ mất ~10 phút)
+## 🗺️ Bạn đang dùng hệ điều hành nào?
+
+### 🪟 Windows 10 / 11 (đa số người dùng) — KHÔNG cần venv
 
 | 🔢 | 📚 Tài liệu | 👀 Bạn sẽ học được gì |
 |---:|------------|----------------------|
-| 1️⃣ | [docs/nodejs-setup.md](docs/nodejs-setup.md) | Cách cài **Node.js LTS** + chạy file `.js` đầu tiên |
-| 2️⃣ | [docs/python-setup.md](docs/python-setup.md) | Cách cài **Python3 + pip + venv** + chạy file `.py` đầu tiên |
-| 3️⃣ | [docs/troubleshooting.md](docs/troubleshooting.md) | Cách xử lý khi gặp lỗi (đừng hoảng nha 🙂) |
+| 1️⃣ | [docs/nodejs-setup.md](docs/nodejs-setup.md) | Cài **Node.js LTS** bằng file `.msi` + chạy `node demo.js` đầu tiên |
+| 2️⃣ | [docs/python-setup.md](docs/python-setup.md) | Cài **Python** bằng file `.exe` (nhớ tích **`Add python.exe to PATH`** ⚠️), cài thư viện thẳng vào máy với `pip install -r requirements.txt`, KHÔNG dùng venv |
+| 3️⃣ | [docs/troubleshooting.md](docs/troubleshooting.md) | 95% lỗi Windows hay gặp đã có sẵn lời giải |
+
+### 🐧 Linux (Ubuntu) — DÙNG venv
+
+> Nếu bạn dùng Ubuntu hoặc VPS Linux, các hướng dẫn cũ (có dùng `venv`) vẫn được giữ tại đây:
+
+- 🟢 [docs/linux/nodejs-setup.md](docs/linux/nodejs-setup.md)
+- 🐍 [docs/linux/python-setup.md](docs/linux/python-setup.md) (kèm `venv` chuẩn chỉnh)
+- 🛠️ [docs/linux/troubleshooting.md](docs/linux/troubleshooting.md)
 
 ---
 
@@ -22,50 +32,56 @@ Mọi thứ đã được mình quay video + chụp ảnh trực tiếp trên m�
 
 ```text
 Tool-Setup-Guide/
-├── README.md                  ← bạn đang đọc file này 👋
+├── README.md                           ← bạn đang đọc 👋
 ├── docs/
-│   ├── nodejs-setup.md        ← hướng dẫn Node.js
-│   ├── python-setup.md        ← hướng dẫn Python
-│   └── troubleshooting.md     ← gỡ rối lỗi thường gặp
+│   ├── nodejs-setup.md                 ← hướng dẫn Node.js trên Windows
+│   ├── python-setup.md                 ← hướng dẫn Python trên Windows (KHÔNG venv)
+│   ├── troubleshooting.md              ← gỡ rối lỗi Windows
+│   └── linux/
+│       ├── nodejs-setup.md             ← phiên bản Linux/Ubuntu
+│       ├── python-setup.md             ← phiên bản Linux/Ubuntu (có venv)
+│       └── troubleshooting.md          ← gỡ rối lỗi Linux
 ├── demo_scripts/
-│   ├── demo.js                ← tool demo Node.js
-│   ├── demo.py                ← tool demo Python
-│   └── requirements.txt       ← thư viện Python cần cài
+│   ├── demo.js                         ← tool demo Node.js (mô phỏng auto request)
+│   ├── demo.py                         ← tool demo Python (mô phỏng auto request)
+│   └── requirements.txt                ← chỉ cần `requests`
 └── media/
-    ├── node-install.mp4       ← video cài Node.js
-    ├── node-demo-result.png   ← ảnh kết quả chạy demo Node
-    ├── python-install.mp4     ← video cài Python
-    ├── python-venv.mp4        ← video tạo & kích hoạt venv (xem chậm!)
-    └── python-demo-result.png ← ảnh kết quả chạy demo Python
+    ├── node-download-win.png           ← ảnh trang tải Node.js cho Windows
+    ├── python-download-win.png         ← ảnh trang tải Python cho Windows
+    ├── node-install.mp4                ← video cài Node.js trên Linux
+    ├── node-demo-result.png            ← kết quả chạy demo Node trên Linux
+    ├── python-install.mp4              ← video cài Python trên Linux
+    ├── python-venv.mp4                 ← video tạo venv trên Linux
+    └── python-demo-result.png          ← kết quả chạy demo Python trên Linux
 ```
 
 ---
 
 ## 🖥️ Yêu cầu của máy bạn
 
-- Hệ điều hành: **Ubuntu 20.04 / 22.04 / 24.04** (hoặc các bản Linux dựa trên Debian)
-- Có kết nối Internet 🌐
-- Tài khoản người dùng có quyền `sudo` (gõ `sudo` mà không bị từ chối)
-
-> 💡 **Bí kíp dành cho người mới:** Nếu bạn dùng Windows hoặc Mac, hãy dùng **WSL (Ubuntu)** trên Windows hoặc **VPS Ubuntu giá rẻ** rồi làm theo hướng dẫn này.
+- **Windows 10 / Windows 11** (đa số người Việt) **hoặc** Ubuntu 20.04 / 22.04 / 24.04.
+- Có kết nối Internet 🌐.
+- Trên Windows: tài khoản Admin (khi cài hỏi mật khẩu thì có thể nhập).
 
 ---
 
 ## 🚀 Bắt đầu ngay
 
-### 👉 Nếu bạn muốn chạy tool viết bằng **Node.js** (`.js`):
-👉 Vào [docs/nodejs-setup.md](docs/nodejs-setup.md)
+### 👉 Tool người ta gửi cho bạn là `.js` (Node.js)?
+👉 Mở [docs/nodejs-setup.md](docs/nodejs-setup.md) ra làm theo từ đầu.
 
-### 👉 Nếu bạn muốn chạy tool viết bằng **Python** (`.py`):
-👉 Vào [docs/python-setup.md](docs/python-setup.md)
+### 👉 Tool người ta gửi cho bạn là `.py` (Python)?
+👉 Mở [docs/python-setup.md](docs/python-setup.md) ra làm theo từ đầu (đặc biệt **lưu ý ô tích `Add python.exe to PATH`** ⚠️).
 
-### 👉 Nếu chạy bị lỗi:
-👉 Mở [docs/troubleshooting.md](docs/troubleshooting.md) ra xem nhé 🛠️
+### 👉 Bị lỗi giữa chừng?
+👉 [docs/troubleshooting.md](docs/troubleshooting.md) là cứu cánh 🛠️.
 
 ---
 
 ## ❤️ Lời nhắn dễ thương
 
-Cài tool lần đầu thường **hơi run tay**, đó là chuyện **bình thường**. Bạn cứ copy đúng lệnh, nhìn màn hình, đối chiếu với ảnh trong tài liệu là sẽ qua. **Bạn làm được mà!** 🥰
+Cài tool lần đầu thường **hơi run tay**, đó là chuyện **rất bình thường**. Cứ Next-Next-Install theo đúng hướng dẫn, đặc biệt KHÔNG quên ô **`Add python.exe to PATH`** khi cài Python — là 95% bạn sẽ thành công ngay từ lần đầu. 🥰
 
-Nếu kẹt ở đâu, mở `docs/troubleshooting.md` ra hoặc nhắn lại cho người gửi tool cho bạn — đừng xóa máy hay format ổ cứng đâu nha 😄.
+Nếu kẹt, mở [troubleshooting.md](docs/troubleshooting.md) hoặc nhắn lại cho người gửi tool — đừng xóa máy / format ổ cứng đâu nha 😄.
+
+**Bạn làm được mà! Bắt đầu thôi 💪🔥**

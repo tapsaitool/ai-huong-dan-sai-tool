@@ -1,203 +1,191 @@
-# 🟢 Hướng dẫn cài Node.js LTS trên Ubuntu — Phiên bản dành cho người KHÔNG biết code
+# 🟢 Cài Node.js trên Windows 10/11 — Chỉ cần biết xài chuột là cài được
 
-> **Đừng lo nếu bạn không biết code, cứ làm y hệt từng bước dưới đây là tool sẽ chạy mượt.** ✨
+> **Đừng lo nếu bạn không biết code. Chỉ cần biết bấm chuột là làm được — cứ Next-Next-Install thôi.** ✨
 
-Sau khi làm xong bài này, bạn sẽ có:
-- ✅ Node.js LTS được cài đặt
-- ✅ `npm` (trình quản lý gói) sẵn sàng dùng
-- ✅ Một file demo `demo.js` chạy thành công và in ra dòng "**Bạn làm tốt lắm!**" 🎉
+Bài này dành riêng cho người dùng **Windows 10 / Windows 11**, hoàn toàn **không gõ lệnh phức tạp**, không cần Terminal cao siêu. Sau khoảng **5 phút**, máy bạn sẽ chạy được tool Node.js đầu tiên.
 
----
-
-## 🪜 BƯỚC 0 — Mở Terminal trên Ubuntu
-
-Trên Ubuntu, **Terminal** là cái cửa sổ đen đen mà chúng ta sẽ gõ lệnh vào đó. Bạn KHÔNG cần biết nó là gì, chỉ cần biết **cách mở** thôi 😄.
-
-### 👉 Cách 1 (nhanh nhất, khuyên dùng):
-**Nhấn tổ hợp 3 phím cùng lúc:**
-
-```
-Ctrl + Alt + T
-```
-
-Một cửa sổ nền đen sẽ hiện ra — **đó chính là Terminal**.
-
-### 👉 Cách 2 (nếu phím tắt không chạy):
-1. Bấm phím **Super** (phím có logo Windows trên bàn phím).
-2. Gõ chữ **terminal** → nhấn **Enter**.
-
-> ⚠️ Nếu thấy cửa sổ chữ trắng nền đen có dòng kiểu `tên-bạn@máy:~$`, **bạn đã mở thành công**. Cứ để con trỏ nhấp nháy ở đó là được.
+Sau khi xong bạn có:
+- ✅ Node.js bản LTS (kèm `npm`) cài sẵn trên Windows
+- ✅ Một file demo `demo.js` chạy được, in ra **"Tool hoạt động bình thường trên Windows."** 🎉
 
 ---
 
-## 🪜 BƯỚC 1 — Cập nhật danh sách gói phần mềm
+## 🪜 BƯỚC 1 — Tải file cài đặt `.msi` từ trang chủ Node.js
 
-📋 **Copy lệnh này** (bấm nút Copy bên góc phải khối code):
+📍 Mở trình duyệt (Chrome / Edge / Firefox đều được) → vào địa chỉ:
 
-```bash
-sudo apt-get update
+```
+https://nodejs.org/en/download
 ```
 
-> 💡 **Lệnh này dùng để làm gì?** Nó bảo Ubuntu: "Đi check xem trên Internet có phần mềm mới gì không, cập nhật danh sách dùm tao". Bắt buộc làm bước này TRƯỚC khi cài bất cứ thứ gì.
+📷 Bạn sẽ thấy một trang giống hệt hình dưới đây:
 
-### 👀 Cách dán lệnh vào Terminal:
-- **Bấm chuột phải** vào cửa sổ Terminal → chọn **Paste**.
-- Hoặc nhấn tổ hợp **Ctrl + Shift + V**.
-- Sau đó nhấn **Enter**.
+![Trang tải Node.js cho Windows](../media/node-download-win.png)
 
-### 📺 Bạn sẽ thấy gì trên màn hình?
-Một loạt dòng kiểu `Hit:1 https://...`, `Reading package lists... Done`. Khi thấy con trỏ `$` quay lại nhấp nháy là **xong**.
+### 👉 Hướng dẫn chọn:
+1. Ở dòng "**Get Node.js®**", giữ nguyên phiên bản có chữ **LTS** màu xanh (đó là phiên bản ổn định nhất 💪).
+2. Trong dropdown "**for**" → chọn **`Windows`** (logo cửa sổ Microsoft).
+3. Kéo xuống mục **"Or get a prebuilt Node.js® for Windows running a x64"**.
+4. Bấm vào **nút xanh lá lớn `Windows Installer (.msi)`** → trình duyệt sẽ tải về một file `node-vXX.X.X-x64.msi` vào thư mục **Downloads**.
 
-> ⚠️ Nếu nó hỏi mật khẩu (`[sudo] password for ...`) → **gõ mật khẩu Ubuntu của bạn** rồi Enter. **Lưu ý:** mật khẩu sẽ KHÔNG hiện ra trên màn hình (kể cả dấu `*`), nhưng vẫn đang gõ thật, đừng tưởng bàn phím hỏng nha 😅.
+> 💡 **Hỏi nhanh:** "x64" là gì? — đó là kiến trúc CPU, hầu hết máy tính bây giờ đều là **x64**. Nếu không chắc, cứ chọn **x64** là đúng 99%.
+
+> ⚠️ **Lưu ý:** Trang này thường mặc định hiển thị phần cài bằng **`Chocolatey`** (PowerShell). **BỎ QUA**, không phải cách dành cho người mới. Cứ kéo xuống tìm đúng nút **`.msi`** màu xanh lá là được.
 
 ---
 
-## 🪜 BƯỚC 2 — Thêm "kho" Node.js LTS chính thức
+## 🪜 BƯỚC 2 — Cài đặt: bấm Next → Next → Install → Finish 🥳
 
-📋 Copy lệnh này:
+### 2.1. Chạy file installer
 
-```bash
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-```
+📍 Mở **File Explorer** (biểu tượng thư mục vàng ở thanh taskbar) → vào thư mục **Downloads** → **nhấp đúp** vào file `node-vXX.X.X-x64.msi` vừa tải.
 
-> 💡 **Lệnh này dùng để làm gì?** Nó tải về cho Ubuntu một file cấu hình của **NodeSource** — kho phần mềm chính chủ luôn cung cấp **phiên bản Node.js LTS mới nhất**. Không có bước này thì `apt` sẽ chỉ cài được Node cũ rích.
+> 💡 Nếu Windows hỏi "Do you want to allow this app to make changes…?" → bấm **Yes**. Đó là cảnh báo bình thường khi cài bất kỳ phần mềm nào trên Windows.
 
-Dán lệnh vào Terminal → Enter. Bạn sẽ thấy nhiều dòng chữ chạy nhanh, chờ vài giây cho nó xong là được.
+### 2.2. Bấm Next theo từng cửa sổ
+
+| 🪟 Cửa sổ | 👆 Bạn cần làm gì? |
+|----------|-------------------|
+| **Welcome to the Node.js Setup Wizard** | Bấm **Next** |
+| **End-User License Agreement** | Tích ô **"I accept the terms in the License Agreement"** → **Next** |
+| **Destination Folder** | Cứ giữ nguyên đường dẫn mặc định `C:\Program Files\nodejs\` → **Next** |
+| **Custom Setup** | KHÔNG cần chỉnh gì — **Next** |
+| **Tools for Native Modules** | Bỏ qua, KHÔNG tích → **Next** *(tránh phải tải thêm vài GB Visual Studio không cần thiết)* |
+| **Ready to install Node.js** | Bấm **Install** 🚀 |
+| **Installing…** | Đợi **30 giây – 1 phút**, có thanh chạy xanh xanh |
+| **Completed the Node.js Setup Wizard** | Bấm **Finish** 🎉 |
+
+> 🎉 **Vậy là Node.js đã cài xong!** Bạn không cần làm gì thêm với file `.msi` đó nữa.
+
+[📸 CHÈN ẢNH: Chụp một cửa sổ "Welcome to the Node.js Setup Wizard" để minh họa]
+
+[📸 CHÈN ẢNH: Chụp cửa sổ "Completed the Node.js Setup Wizard" với nút Finish]
 
 ---
 
-## 🪜 BƯỚC 3 — Cài Node.js bằng 1 câu lệnh
+## 🪜 BƯỚC 3 — Mở "CMD thần thánh" ngay tại thư mục tool (KHÔNG cần `cd`!)
 
-📋 Copy lệnh này:
+> 🤔 **Tại sao mục này tên là "CMD thần thánh"?**
+> Nhiều bạn mới thường mở CMD ở đường dẫn `C:\Users\TenCuaBan\` rồi loay hoay gõ `cd D:\Tool\...` mãi không vào đúng được thư mục. Có một mẹo "thần thánh" giúp bạn **mở thẳng CMD vào đúng thư mục đang xem**, **chỉ với 3 ký tự** 😎.
 
-```bash
-sudo apt-get install -y nodejs
-```
+### 👉 Mẹo mở CMD nhanh nhất Windows (làm 1 lần là nhớ cả đời):
 
-> 💡 **Lệnh này dùng để làm gì?** Bảo Ubuntu cài đặt gói tên là `nodejs` từ kho NodeSource vừa thêm ở Bước 2. Tham số `-y` nghĩa là "tự động đồng ý mọi câu hỏi", đỡ phải Enter hoài.
+1. Mở **File Explorer** → đi đến thư mục chứa tool (ví dụ thư mục có file `demo.js`).
+2. Nhìn lên **thanh địa chỉ** (cái thanh ở trên cùng có ghi đường dẫn kiểu `D:\Tool\my-bot`).
+3. **Click chuột trái 1 cái vào thanh địa chỉ đó** — đường dẫn sẽ chuyển thành dạng có thể chỉnh sửa được.
+4. **Xoá hết** đường dẫn → **gõ chính xác 3 chữ:** `cmd`
+5. Nhấn **Enter**.
 
-Dán → Enter. Đợi khoảng **30 giây – 1 phút** (tuỳ Internet). Khi thấy con trỏ `$` quay lại là cài xong! 🎉
+✨ **PHÉP MÀU XẢY RA:** Một cửa sổ **CMD nền đen** sẽ bật lên, **đã đứng sẵn ngay tại thư mục** chứa tool. Không phải gõ `cd` gì hết.
+
+[📸 CHÈN ẢNH: Chụp thanh địa chỉ của File Explorer đang gõ chữ `cmd` thay cho đường dẫn]
+
+[📸 CHÈN ẢNH: Chụp cửa sổ CMD vừa mở ra, dòng đầu hiện đường dẫn của thư mục tool]
+
+> 💡 **Mẹo này áp dụng cho cả Python**, cả PowerShell (gõ `powershell` thay vì `cmd`). Bạn vừa học một kỹ năng "đỉnh" của dân IT rồi đấy 😎.
 
 ---
 
-## 🪜 BƯỚC 4 — Kiểm tra cài thành công chưa
+## 🪜 BƯỚC 4 — Kiểm tra Node.js đã cài thành công
 
-📋 Gõ lần lượt 2 lệnh này (mỗi lệnh nhấn Enter sau khi gõ):
+📋 Trong cửa sổ CMD vừa mở, gõ lần lượt 2 lệnh sau (sau mỗi lệnh nhấn **Enter**):
 
-```bash
+```cmd
 node -v
 ```
 
-```bash
+```cmd
 npm -v
 ```
 
 > 💡 **Lệnh này dùng để làm gì?**
-> - `node -v` → in ra **phiên bản Node.js** đang có (ví dụ: `v22.12.0`).
-> - `npm -v` → in ra **phiên bản npm** (ví dụ: `10.8.3`).
+> - `node -v` → in ra phiên bản Node.js (ví dụ: `v22.12.0`).
+> - `npm -v` → in ra phiên bản npm (ví dụ: `10.8.3`).
 
 ### ✅ Kết quả mong đợi:
-Bạn nhìn thấy 2 dòng số kiểu `v22.x.x` và `10.x.x` → **Cài thành công 100%!** 🥳
+Hiện ra 2 dòng có chữ `v...` và một số phiên bản → **CÀI THÀNH CÔNG 100%!** 🥳
 
-> ❌ Nếu báo `command not found`, mở [troubleshooting.md](troubleshooting.md) → mục "Node not found".
-
----
-
-## 🎬 Video quay đầy đủ quá trình cài Node.js
-
-Mình đã quay lại từ lúc mở Terminal đến lúc `node -v` thành công, bạn xem theo cho đỡ bỡ ngỡ 👇
-
-📹 [▶️ Xem video: media/node-install.mp4](../media/node-install.mp4)
-
-> 💡 Nếu bạn xem trên GitHub mà video không tự phát, hãy **bấm vào link → tải về máy → mở bằng VLC** hoặc bất cứ trình xem video nào.
+> ❌ Nếu báo `'node' is not recognized as an internal or external command…` → xem mục [troubleshooting.md → "Node not recognized"](troubleshooting.md#-node-not-recognized-trên-windows).
 
 ---
 
-## 🧪 BƯỚC 5 — Chạy tool demo đầu tiên (file `demo.js`)
+## 🪜 BƯỚC 5 — (Nếu tool có file `package.json`) Cài thư viện bằng `npm install`
 
-Giờ là lúc thử cảm giác **"chạy code"** lần đầu tiên đời 😎.
+Nhiều tool sẽ kèm theo file `package.json` — đó là "danh sách thư viện cần cài" cho tool. Cách cài cực đơn giản:
 
-### 5.1. Tạo file `demo.js` bằng `nano`
+📋 Trong cửa sổ CMD đang đứng tại thư mục tool, gõ:
 
-📋 Copy lệnh này:
-
-```bash
-nano demo.js
+```cmd
+npm install
 ```
 
-> 💡 **Lệnh này dùng để làm gì?** Mở một trình soạn thảo văn bản tên là **`nano`** ngay trong Terminal. Khi gõ xong Enter, **màn hình sẽ đen xì lại và xuất hiện một thanh menu ở dưới**. **ĐỪNG SỢ**, đó là chuyện bình thường nhé! 😄
+> 💡 **Lệnh này dùng để làm gì?** Nó đọc file `package.json`, **tự động tải mọi thư viện cần thiết** về thư mục `node_modules/`. Chờ vài giây đến vài phút (tuỳ Internet và độ "nặng" của tool).
 
-### 5.2. Dán code vào
+### ✅ Khi nào biết là xong?
+Khi CMD hiện trở lại dòng `D:\Tool\my-bot>` (hết các dòng `npm warn ...`) → tool đã có đủ thư viện. ✨
 
-📋 Copy đoạn code dưới đây:
+> ℹ️ Nếu **tool KHÔNG có** file `package.json`, bạn có thể **bỏ qua hoàn toàn bước này**.
+
+---
+
+## 🪜 BƯỚC 6 — Chạy tool demo: `node demo.js`
+
+### 6.1. Tạo file `demo.js` trong thư mục tool
+
+📌 Cách đơn giản nhất cho người mới:
+1. Trong File Explorer, vào thư mục tool.
+2. Bấm chuột phải khoảng trống → **New → Text Document** → đặt tên là `demo.js` (nhớ xoá đuôi `.txt`, để đúng `.js`).
+3. Bấm chuột phải vào file `demo.js` → **Open with → Notepad**.
+4. Copy đoạn code dưới đây vào Notepad → **Ctrl + S** để lưu → đóng Notepad.
+
+📋 Nội dung file `demo.js`:
 
 ```javascript
-console.log("🟢 BẮT ĐẦU CHẠY TOOL TỰ ĐỘNG...");
-console.log("⏳ Đang kiểm tra môi trường Node.js...");
-setTimeout(() => {
-    console.log("✅ Môi trường chuẩn! Đã sẵn sàng chạy các kịch bản automation.");
-    console.log("👉 Bạn làm tốt lắm!");
-}, 2000);
+console.log("🚀 Kích hoạt Tool Auto Request (Node.js)...");
+setTimeout(() => console.log("✅ Kết nối máy chủ thành công. HTTP Status: 200"), 1000);
+setTimeout(() => console.log("💰 Đã nhận dữ liệu thành công! Tool hoạt động bình thường trên Windows."), 2000);
 ```
 
-Sau khi copy:
-- **Bấm chuột phải vào màn hình đen** → chọn **Paste** (hoặc nhấn **Ctrl + Shift + V**).
-- Bạn sẽ thấy 6–7 dòng code xuất hiện.
+> ⚠️ **Lưu ý quan trọng về đuôi file:** Windows đôi khi ẩn đuôi file. Vào tab **View** trên File Explorer → tích ô **"File name extensions"** để thấy đuôi `.js`. Nếu file đang là `demo.js.txt` → đổi tên xoá phần `.txt` đi.
 
-### 5.3. Lưu file & thoát
+### 6.2. Chạy file `demo.js`
 
-- Nhấn **`Ctrl + O`** (chữ O, không phải số 0) → nó sẽ hỏi tên file → cứ **Enter** để lưu.
-- Nhấn **`Ctrl + X`** → thoát khỏi nano, quay lại Terminal bình thường.
+📋 Quay lại CMD đang đứng tại thư mục tool, gõ:
 
-> 🧠 **Mẹo nhớ:** **O** = "Oh, save dùm!", **X** = "eXit ra ngoài".
-
-### 5.4. Chạy file demo
-
-📋 Copy lệnh này:
-
-```bash
+```cmd
 node demo.js
 ```
 
-> 💡 **Lệnh này dùng để làm gì?** Nó bảo Node.js: "Mở file `demo.js` ra và chạy luôn dùm tao".
+> 💡 **Lệnh này dùng để làm gì?** Bảo Node.js: "Mở file `demo.js` ra và chạy giúp tao".
 
-Nhấn Enter → đợi **2 giây** (vì trong code có `setTimeout 2000ms`).
+Đợi **2 giây** (vì code có `setTimeout` 1s + 2s).
 
-### ✅ Bạn sẽ thấy 4 dòng kết quả như sau:
+### ✅ Bạn sẽ thấy 3 dòng kết quả như sau:
 
 ```
-🟢 BẮT ĐẦU CHẠY TOOL TỰ ĐỘNG...
-⏳ Đang kiểm tra môi trường Node.js...
-✅ Môi trường chuẩn! Đã sẵn sàng chạy các kịch bản automation.
-👉 Bạn làm tốt lắm!
+🚀 Kích hoạt Tool Auto Request (Node.js)...
+✅ Kết nối máy chủ thành công. HTTP Status: 200
+💰 Đã nhận dữ liệu thành công! Tool hoạt động bình thường trên Windows.
 ```
 
----
+> 🎉 **Nếu màn hình của bạn hiện ra y hệt 3 dòng trên, chúc mừng — Node.js trên Windows của bạn ngon lành rồi!** Bạn có thể chạy bất kỳ tool Node.js nào người ta gửi cho theo cách này.
 
-## 🖼️ Đối chiếu kết quả với ảnh thật
-
-📷 Đây là ảnh chụp màn hình thật của mình lúc chạy `node demo.js`:
-
-![Kết quả chạy demo.js](../media/node-demo-result.png)
-
-> 🎉 **Nếu màn hình của bạn hiện ra y hệt hình trên, chúc mừng, bạn đã làm đúng 100%!**
->
-> Bạn đã sẵn sàng để chạy bất cứ tool Node.js nào người ta gửi cho. Cách chạy luôn là: **mở Terminal trong thư mục chứa file → gõ `node tên-file.js`**.
+[📸 CHÈN ẢNH: Chụp cửa sổ CMD trên Windows hiện ra 3 dòng kết quả ở trên — placeholder để bạn tự bổ sung khi test trên máy Windows thật]
 
 ---
 
 ## 🆘 Bị lỗi ư? Đừng panic!
 
-Mở [troubleshooting.md](troubleshooting.md) → tìm đến phần "Node.js" để xem lỗi của bạn nằm ở đâu. 95% lỗi thường gặp đã có sẵn trong đó. 💪
+Mở [troubleshooting.md](troubleshooting.md) — 95% lỗi thường gặp đã có sẵn lời giải. 💪
 
 ---
 
 ## 🎓 Bạn đã học được gì?
 
-- ✅ Cách mở Terminal (3 phím Ctrl + Alt + T)
-- ✅ Cách paste lệnh (chuột phải → Paste / Ctrl + Shift + V)
-- ✅ Cách cài Node.js LTS chuẩn chỉnh
-- ✅ Cách tạo file bằng `nano`, lưu, thoát
-- ✅ Cách chạy một file `.js`
+- ✅ Cài Node.js bằng **file `.msi`** trên Windows (Next → Install → Finish)
+- ✅ Mẹo "CMD thần thánh" — gõ `cmd` vào thanh địa chỉ File Explorer
+- ✅ Kiểm tra cài đặt qua `node -v`, `npm -v`
+- ✅ Cài thư viện tool với `npm install`
+- ✅ Chạy file `.js` đầu tiên trên Windows
 
-**Bạn không còn là "no-coder" nữa rồi nha!** 🚀 Tiếp theo, qua [python-setup.md](python-setup.md) để học cài Python.
+> Tiếp theo qua [python-setup.md](python-setup.md) để cài Python — flow tương tự nhưng có **1 ô tích "thần kỳ"** mà bạn KHÔNG được quên đâu nha! 🐍
