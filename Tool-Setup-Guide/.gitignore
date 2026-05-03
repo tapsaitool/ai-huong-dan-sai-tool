@@ -1,0 +1,6 @@
+# Người dùng tạo venv trong demo_scripts khi làm theo hướng dẫn → đừng commit
+demo_scripts/venv/
+demo_scripts/.venv/
+demo_scripts/__pycache__/
+demo_scripts/node_modules/
+*.pyc
